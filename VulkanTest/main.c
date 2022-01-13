@@ -10,7 +10,7 @@ int main(int ac, char **av) {
     CreateCommandPool();                    // allocate queue
     PrepareCommandBuffer();                 // 
     Compute();                              // execute it
-    DestroyCommandoPoolAndLogicaDevice();
+    DestroyCommandPoolAndLogicalDevice();
     
 
     return 0;

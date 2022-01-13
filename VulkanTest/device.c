@@ -72,7 +72,7 @@ void CreateCommandPool(void) {
 	}
 }
 
-void DestroyCommandoPoolAndLogicaDevice(void){
+void DestroyCommandPoolAndLogicalDevice(void){
 	if (ComputeCmdPool != VK_NULL_HANDLE) {
 		vkDestroyCommandPool(LogicalDevice, ComputeCmdPool, NULL);
 	}

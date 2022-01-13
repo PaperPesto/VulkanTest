@@ -2,6 +2,7 @@
 
 void CreateDeviceAndComputeQueue(void);
 void CreateCommandPool(void);
+void DestroyCommandPoolAndLogicalDevice(void);
 
 extern VkDevice LogicalDevice;
 extern VkQueue ComputingQueue;
