@@ -27,6 +27,9 @@
     <ClCompile Include="instance.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pipeline.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="compute.h">
@@ -38,5 +41,11 @@
     <ClInclude Include="instance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="pipeline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shader.comp" />
   </ItemGroup>
 </Project>

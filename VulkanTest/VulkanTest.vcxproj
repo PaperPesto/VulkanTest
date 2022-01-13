@@ -159,11 +159,16 @@
     <ClCompile Include="device.c" />
     <ClCompile Include="instance.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="pipeline.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="compute.h" />
     <ClInclude Include="device.h" />
     <ClInclude Include="instance.h" />
+    <ClInclude Include="pipeline.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shader.comp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

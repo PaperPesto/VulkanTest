@@ -28,6 +28,7 @@ void PrepareCommandBuffer(void) {
         return;
     }
 
+    vkCmdBindPipeline(CommandBuffer, VK_PIPELINE_BIND_POINT_COMPUTE, Pipeline);
     vkCmdDispatch(CommandBuffer, 1, 1, 1);  // runs the shaders in multiple parallel instances each with different index
 
     if (vkEndCommandBuffer(CommandBuffer) != VK_SUCCESS) {
