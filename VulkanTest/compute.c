@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "device.h"
+#include "pipeline.h"
 
 VkCommandBuffer CommandBuffer = VK_NULL_HANDLE;
 

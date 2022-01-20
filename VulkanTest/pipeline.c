@@ -4,6 +4,7 @@
 #include "device.h"
 
 VkPipeline Pipeline = VK_NULL_HANDLE;
+VkPipelineLayout PipelineLayout = VK_NULL_HANDLE;
 
 VkShaderModule CreateComputeShader(void) {
 	uint8_t shaderData[20000];
@@ -22,7 +23,7 @@ VkShaderModule CreateComputeShader(void) {
 
 	createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
 	createInfo.codeSize = size;
-	createInfo.pCode = shaderData;
+	createInfo.pCode = (uint32_t*) shaderData;
 
 	VkShaderModule handle;
 
@@ -34,11 +35,27 @@ VkShaderModule CreateComputeShader(void) {
 	return handle;
 }
 
+void CreatePipelineLayout(void) {
+	
+	VkPipelineLayoutCreateInfo createLayout;
+	memset(&createLayout, 0, sizeof(createLayout));
+	createLayout.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
+	
+	if (vkCreatePipelineLayout(LogicalDevice, &createLayout, NULL, &PipelineLayout) != VK_SUCCESS) {
+		printf("Failed to create the pipeline layout\n");
+		return;
+	}
+
+
+}
+
 void CreatePipeline(void) {
+	CreatePipelineLayout();
+
 	VkComputePipelineCreateInfo createPipeline;
 	memset(&createPipeline, 0, sizeof(createPipeline));
 	createPipeline.sType = VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO;
-	createPipeline.layout = Layout;
+	createPipeline.layout = PipelineLayout;
 	createPipeline.basePipelineIndex = -1;
 	createPipeline.stage.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
 	createPipeline.stage.stage = VK_SHADER_STAGE_COMPUTE_BIT;
@@ -48,5 +65,15 @@ void CreatePipeline(void) {
 	if (vkCreateComputePipelines(LogicalDevice, VK_NULL_HANDLE, 1, &createPipeline, NULL, &Pipeline) != VK_SUCCESS) {
 		printf("Failed to create a pipeline\n");
 		return;
+	}
+}
+
+
+void DestroyPipeline(void) {
+	if (PipelineLayout != VK_NULL_HANDLE) {
+		vkDestroyPipelineLayout(LogicalDevice, PipelineLayout, NULL);
+	}
+	if (Pipeline != VK_NULL_HANDLE) {
+		vkDestroyPipeline(LogicalDevice, Pipeline, NULL);
 	}
 }
